@@ -1,2 +1,6 @@
 # ignore all other directories except for ecommerce 
 Archieve/
+venv/
+.replit
+rep.md
+replit.nix
