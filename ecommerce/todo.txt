@@ -2,10 +2,13 @@
 -DONE Create my account page
 —DONE Simple search
     - maybe even for vendor
-—Add product to the cart
-—View cart
+—DONE Add product to the cart
+—DONE View cart
+-Fix problem with adding, removing, and editing products
 —Checkout
  - Maybe connect it to your stripe account and see how that would work
+-Create a checkout page
+-Add checkout functionality
 —Implement payment gateway
 —Admin pages for the vendors
 —Deploy project
