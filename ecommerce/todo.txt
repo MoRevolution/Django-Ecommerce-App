@@ -1,6 +1,6 @@
 —Make it possible to sign up, log in and tog out
 -DONE Create my account page
-—Simple search
+—DONE Simple search
     - maybe even for vendor
 —Add product to the cart
 —View cart
