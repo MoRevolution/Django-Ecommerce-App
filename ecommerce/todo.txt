@@ -4,11 +4,16 @@
     - maybe even for vendor
 —DONE Add product to the cart
 —DONE View cart
+—DONE Thumbnail
 -Fix problem with adding, removing, and editing products
 —Checkout
  - Maybe connect it to your stripe account and see how that would work
 -Create a checkout page
+    -Separate the cart from the checkout page
+-Separate Vendors form customers
+-Vendors should be able to see their own products
+-Vendors should be able to see their earnings
+    —Admin pages for the vendors
 -Add checkout functionality
 —Implement payment gateway
-—Admin pages for the vendors
 —Deploy project

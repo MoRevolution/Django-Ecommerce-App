@@ -4,3 +4,7 @@ venv/
 .replit
 rep.md
 replit.nix
+.vscode/
+
+#files 
+.gitignore

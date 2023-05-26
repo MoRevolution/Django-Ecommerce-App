@@ -4,9 +4,24 @@ from .models import Product, Category
 
 from .cart import Cart
 
-def add_to_cart(request, product_id): 
+def add_to_cart(request, product_id:str): 
     cart = Cart(request)
     cart.add(product_id=product_id)
+
+    return redirect('cart_view')
+
+def change_quantity(request, product_id:str):
+    action = request.GET.get('action', None)
+    cart = Cart(request)
+
+    if action: 
+        quantity = 1 
+
+        if action == 'decrease':
+            quantity = -1
+        
+        cart.add(product_id=product_id, quantity=quantity, update_quantity=True)
+
 
     return redirect('cart_view')
 
@@ -18,9 +33,9 @@ def cart_view(request):
         'cart': cart,
     })
 
-def remove_from_cart(request, product_id):
+def remove_from_cart(request, product_id: str):
     cart = Cart(request)
-    cart.remove(product_id=product_id)
+    cart.remove(product_id= product_id)
 
     return redirect('cart_view')
 
@@ -53,4 +68,5 @@ def product_detail(request, category_slug, slug) :
     return render(request, 'store/product_detail.html', {
         'product': product,
     })
+
 
