@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 from .cart import Cart
 from .forms import OrderForm
-from .models import Product, Category
+from .models import Product, Category, Order, OrderItem
 
 
 def add_to_cart(request, product_id:str): 
@@ -43,6 +43,24 @@ def checkout(request):
         form = OrderForm(request.POST)
 
         if form.is_valid():
+            total_cost = 0
+        
+            for item in cart: 
+                total_cost += item['product'].price * int(item['quantity'])
+
+            order = form.save(commit=False)
+            order.created_by = request.user
+            order.paid_amount = total_cost
+            order.save()
+
+            for item in cart:
+                item = OrderItem.objects.create(order = order,
+                                                 product= item['product'], 
+                                                 price = item['product'].price * int(item['quantity']), 
+                                                 quantity = int(item['quantity']))
+            
+            cart.clear()
+
             return redirect('myaccount')
     else: 
         form = OrderForm()
@@ -51,7 +69,6 @@ def checkout(request):
         'cart': cart,
         'form': form,
     })
-
 
 
 
