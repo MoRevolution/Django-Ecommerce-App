@@ -8,8 +8,7 @@ from django.contrib import messages
 
 from .models import Userprofile
 from store.forms import ProductForm
-from store.models import Product, Category
-
+from store.models import Product
 
 # Create your views here. 
 def vendor_detail(request, pk):
@@ -26,14 +25,14 @@ def my_store(request):
     products  = request.user.products.exclude(status=Product.DELETED)
 
     return render(request, 'userprofile/my_store.html', {
-        'products': products,
+        'products': products
     })
 
 @login_required
 def add_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
-        
+
         if form.is_valid():
             title = request.POST.get('title')
 
@@ -42,47 +41,48 @@ def add_product(request):
             product.slug = slugify(title)
             product.save()
 
-            messages.success(request, 'Product added successfully')
+            messages.success(request, 'The product was added!')
+
             return redirect('my_store')
-        
-    else: 
+    else:
         form = ProductForm()
-        
+
     return render(request, 'userprofile/product_form.html', {
-        'title': 'Add Product',
+        'title': 'Add product',
         'form': form
     })
 
 @login_required
-def edit_product(request, pk): 
+def edit_product(request, pk):
     product = Product.objects.filter(user=request.user).get(pk=pk)
 
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES, instance=product)
-        
+
         if form.is_valid():
             form.save()
-            
-            messages.success(request, 'Product updated successfully')
-            
+
+            messages.success(request, 'The changes was saved!')
+
             return redirect('my_store')
-    else: 
+    else:
         form = ProductForm(instance=product)
-        
+
     return render(request, 'userprofile/product_form.html', {
-        'title': 'Edit Product',
+        'title': 'Edit product',
         'product': product,
-        'form': form,
+        'form': form
     })
 
 @login_required
-def delete_product(request, pk): 
+def delete_product(request, pk):
     product = Product.objects.filter(user=request.user).get(pk=pk)
     product.status = Product.DELETED
+    product.save()
 
-    messages.success(request, 'Product deleted successfully!')
+    messages.success(request, 'The product was deleted!')
 
-    return redirect('my_store')    
+    return redirect('my_store')
 
 
 @login_required

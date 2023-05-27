@@ -1,8 +1,12 @@
 from django.db.models import Q 
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Product, Category
+from django.contrib.auth.decorators import login_required
+
 
 from .cart import Cart
+from .forms import OrderForm
+from .models import Product, Category
+
 
 def add_to_cart(request, product_id:str): 
     cart = Cart(request)
@@ -22,7 +26,6 @@ def change_quantity(request, product_id:str):
         
         cart.add(product_id=product_id, quantity=quantity, update_quantity=True)
 
-
     return redirect('cart_view')
 
 def cart_view(request): 
@@ -32,6 +35,25 @@ def cart_view(request):
     return render(request, 'store/cart_view.html', {
         'cart': cart,
     })
+
+@login_required
+def checkout(request): 
+    cart = Cart(request)
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+
+        if form.is_valid():
+            return redirect('myaccount')
+    else: 
+        form = OrderForm()
+
+    return render(request, 'store/checkout.html', {     
+        'cart': cart,
+        'form': form,
+    })
+
+
+
 
 def remove_from_cart(request, product_id: str):
     cart = Cart(request)

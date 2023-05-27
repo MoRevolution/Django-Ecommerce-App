@@ -7,7 +7,8 @@
 —DONE Thumbnail
 -Fix problem with adding, removing, and editing products
 —Checkout
- - Maybe connect it to your stripe account and see how that would work
+    - Only for authenticated users
+    - Maybe connect it to your stripe account and see how that would work
 -Create a checkout page
     -Separate the cart from the checkout page
 -Separate Vendors form customers

@@ -77,3 +77,37 @@ class Product(models.Model):
         thumbnail = File(thumb_io, name=name)
 
         return thumbnail
+class Order(models.Model): 
+    ORDERED =  'ordered'
+    SHIPPED = 'shipped'
+    DELIVERED = 'delivered'
+    CANCELLED = 'cancelled'
+    INCART = 'incart'
+
+    STATUS_CHOICES = (
+        (ORDERED, 'Ordered'),
+        (SHIPPED, 'Shipped'),
+        (DELIVERED, 'Delivered'),
+        (CANCELLED, 'Cancelled'),
+        (INCART, 'incart'),
+    )
+
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    address= models.CharField(max_length=255)
+    zipcode = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    paid_amount = models.IntegerField(blank=True, null=True)
+    is_paid = models.BooleanField(default=False)
+    merchant_id = models.CharField(max_length=255)
+    created_by = models.ForeignKey(User, related_name='orders', on_delete=models.SET_NULL, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=INCART)
+
+
+class OrderItem(models.Model): 
+    order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name='items', on_delete=models.CASCADE)
+    price = models.IntegerField(default=0)
+    quantity = models.IntegerField(default=1)
+    
