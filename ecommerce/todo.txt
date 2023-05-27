@@ -7,14 +7,18 @@
 —DONE Thumbnail
 -DONE Create a checkout page
     -DONE Separate the cart from the checkout page
+-DONE Separate Vendors form customers
+-DONE Add cart button in menu
+    - DONE Include number of products and such
+—DONE Checkout
+    -DONE Only for authenticated users
+-DONE Vendors should be able to see their own orders
 —Fix problem with adding, removing, and editing products
     —DONE Removing  
-—Checkout
-    -DONE Only for authenticated users
--Separate Vendors form customers
--Vendors should be able to see their own products
 -Vendors should be able to see their earnings
     —Admin pages for the vendors
 -Add checkout functionality
 —Implement payment gateway
+    - get api key from stripe 
+    - Install  stripe and add 
 —Deploy project

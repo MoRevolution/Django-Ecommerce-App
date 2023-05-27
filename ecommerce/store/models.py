@@ -111,3 +111,6 @@ class OrderItem(models.Model):
     price = models.IntegerField(default=0)
     quantity = models.IntegerField(default=1)
     
+
+    def get_display_price(self): 
+        return self.price / 100
