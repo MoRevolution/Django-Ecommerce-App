@@ -9,9 +9,11 @@
     <meta property="og:description" content="{{ product.description }}">
     <meta property="og:type"  content="article">
     <meta property="og:url"  content="https://ecommerce.com{% url 'product_detail' product.category.slug product.slug %}">
+    
     {% if product.image %}
         <meta property="og:image" content="https://ecommerce.com{{product.image.url}}">
     {% endif %}
+    
 {% endblock %}
 
 {% block content %}

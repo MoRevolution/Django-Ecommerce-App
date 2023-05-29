@@ -62,7 +62,6 @@ def checkout(request):
 
         if first_name and last_name and address and zipcode and city: 
             form = OrderForm(request.POST)
-
             
             total_cost = 0
             items = []
