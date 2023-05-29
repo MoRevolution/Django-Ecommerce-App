@@ -13,12 +13,12 @@
 —DONE Checkout
     -DONE Only for authenticated users
 -DONE Vendors should be able to see their own orders
+-DONE Add checkout functionality
 —Fix problem with adding, removing, and editing products
     —DONE Removing  
--Vendors should be able to see their earnings
-    —Admin pages for the vendors
--Add checkout functionality
 —Implement payment gateway
-    - get api key from stripe 
-    - Install  stripe and add 
+    - DONE get api key from stripe 
+    - DONE Install  stripe
+    - DONE pass public key 
+    - DONE Create Stripe Checkout
 —Deploy project
