@@ -2,11 +2,23 @@
 
 {% block title%} {{ product.title }} {% endblock %}
 
+{% block meta %}
+    <meta name="description" content="{{ product.description }}">
+    <meta name="author" content="Ecommerce Mo">
+    <meta property="og:title" content="Ecommerce | {{ product.title }}">
+    <meta property="og:description" content="{{ product.description }}">
+    <meta property="og:type"  content="article">
+    <meta property="og:url"  content="https://ecommerce.com{% url 'product_detail' product.category.slug product.slug %}">
+    {% if product.image %}
+        <meta property="og:image" content="https://ecommerce.com{{product.image.url}}">
+    {% endif %}
+{% endblock %}
+
 {% block content %}
 
     {% if product.image %}
     <div class ="image mb-4">
-    <img src="{{product.image.url}}" alt="Image of {{product.title}}">
+    <img src="{{ product.image.url }}" alt="Image of {{product.title}}">
     </div>
     {% endif %}
 
