@@ -11,7 +11,7 @@ git clone https://github.com/MoRevolution/DBM-Project_Ecommerce.git
 Or, if you prefer using  GitHub CLI: 
 
 ```bash
-git clone https://github.com/MoRevolution/DBM-Project_Ecommerce.git
+gh repo clone MoRevolution/Django-Ecommerce-App
 ```
 
 To run this app, you will need to have django and other dependencies which I have included in "requirements.txt". Download django and other dependencies using:
